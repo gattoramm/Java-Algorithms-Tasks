@@ -17,7 +17,7 @@ class HighArray {
 
     public boolean find(long searchKey) {
         int j;
-        for (j=0; j<nElems; j++)
+        for (j = 0; j < nElems; j++)
             if (a[j] == searchKey)
                 break;
         if (j == nElems)
@@ -27,13 +27,12 @@ class HighArray {
     }
 
     public void insert(long value) {
-        a[nElems] = value;
-        nElems++;
+        a[nElems++] = value;
     }
 
     public boolean delete(long value) {
         int j;
-        for (j=0; j<nElems; j++)
+        for (j = 0; j < nElems; j++)
             if (value == a[j])
                 break;
         if (j == nElems)
@@ -47,7 +46,7 @@ class HighArray {
     }
 
     public void display() {
-        for (int j=0; j<nElems; j++)
+        for (int j = 0; j < nElems; j++)
             System.out.print(a[j] + " ");
         System.out.println("");
     }
@@ -55,7 +54,7 @@ class HighArray {
     public long removeMax() {
         long max = -1;
 
-        for (int j=0; j<nElems; j++)
+        for (int j = 0; j < nElems; j++)
             if (a[j] > max)
                 max = a[j];
 
@@ -85,7 +84,7 @@ class HighArrayApp {
         System.out.println("Print array: ");
         arr.display();
 
-        for(int j=0; j<maxSize; j++)
+        for(int j = 0; j < maxSize; j++)
             sortedArr.insert(arr.removeMax());
 
         System.out.println("Print sorted array: ");

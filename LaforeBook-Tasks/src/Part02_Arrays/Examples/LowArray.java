@@ -39,13 +39,13 @@ class LowArrayApp {
         arr.setElem(9, 33);
         nElem = 10;
 
-        for (j=0; j<nElem; j++)
+        for (j = 0; j < nElem; j++)
             System.out.print(arr.getElem(j) + " ");
         System.out.println("");
 
         // поиск элемента
         int searchKey = 26;
-        for (j=0; j<nElem; j++)
+        for (j = 0; j < nElem; j++)
             if (arr.getElem(j) == searchKey) break;
         if (j == nElem)
             System.out.println("Can't find " + searchKey);
@@ -53,13 +53,13 @@ class LowArrayApp {
 
         // удаление элемента
         System.out.println("Delete element with key = 55");
-        for (j=0; j<nElem; j++)
+        for (j = 0; j < nElem; j++)
             if (arr.getElem(j) == 55) break;
-        for (int k=j; k<nElem; k++)
+        for (int k = j; k < nElem; k++)
             arr.setElem(k, arr.getElem(k+1));
         nElem--;
 
-        for (j=0; j<nElem; j++)
+        for (j = 0; j < nElem; j++)
             System.out.print(arr.getElem(j) + " ");
         System.out.println("");
     }
