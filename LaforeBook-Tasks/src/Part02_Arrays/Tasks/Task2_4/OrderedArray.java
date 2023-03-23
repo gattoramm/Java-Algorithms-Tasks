@@ -57,7 +57,7 @@ class OrderedArray {
             if (a[j] > value)
                 break;
         for (int k = nElems; k > j; k--)
-            a[k] = a[k-1];
+            a[k] = a[k - 1];
         a[j] = value;
         nElems++;
     }
@@ -68,7 +68,7 @@ class OrderedArray {
             return false;
         else {
             for (int k = j; k < nElems; k++)
-                a[k] = a[k+1];
+                a[k] = a[k + 1];
             nElems--;
             return true;
         }
