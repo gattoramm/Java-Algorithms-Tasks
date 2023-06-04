@@ -1,5 +1,7 @@
 package part8.examples;
 
+import java.util.Stack;
+
 public class Tree {
     private Node root;
 
@@ -43,6 +45,7 @@ public class Tree {
                         parent.leftChild = newNode;
                         return;
                     }
+                }
                 else {
                      current = current.rightChild;
 
@@ -51,17 +54,7 @@ public class Tree {
                             return;
                         }
                     }
-                }
             }
-        }
-    }
-
-    public void inOrder(Node localRoot) {
-        if (localRoot != null) {
-            inOrder(localRoot.leftChild);
-
-            System.out.println(localRoot.iData + " ");
-            inOrder(localRoot.rightChild);
         }
     }
 
@@ -135,7 +128,6 @@ public class Tree {
     // Метод возвращает узел со следующим значением после delNode
     // Для этого он сначала переходит к правому потомку, а затем
     // отслеживает цепочку левых потомков этого узла
-
     private Node getSuccessor(Node delNode) {
         Node successorParent = delNode;
         Node successor = delNode;
@@ -194,5 +186,51 @@ public class Tree {
             postOrder(localRoot.rightChild);
             System.out.print(localRoot.iData + " ");
         }
+    }
+
+    public void displayTree() {
+        Stack globalStack = new Stack();
+        globalStack.push(root);
+        int nBlanks = 32;
+        boolean isRowEmpty = false;
+        System.out.println(
+                ".............................................................");
+
+        while (!isRowEmpty) {
+            Stack localStack = new Stack();
+            isRowEmpty = true;
+
+            for (int i = 0; i < nBlanks; i++)
+                System.out.print(" ");
+
+            while (!globalStack.isEmpty()) {
+                Node temp = (Node)globalStack.pop();
+
+                if (temp != null) {
+                    System.out.print(temp.iData);
+                    localStack.push(temp.leftChild);
+                    localStack.push(temp.rightChild);
+
+                    if (temp.leftChild != null || temp.rightChild != null)
+                        isRowEmpty = false;
+                }
+                else {
+                    System.out.print("--");
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+
+                for (int i = 0; i < nBlanks * 2 - 2; i++)
+                    System.out.print(" ");
+            }
+            System.out.println();
+            nBlanks /= 2;
+
+            while (!localStack.isEmpty())
+                globalStack.push(localStack.pop());
+        }
+
+        System.out.println(
+                ".............................................................");
     }
 }
