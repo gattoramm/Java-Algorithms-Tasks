@@ -1,4 +1,4 @@
-package Part02_Arrays.Examples;
+package part2.examples;
 
 /**
  * Класс массива с низкоуровневым интерфейсом

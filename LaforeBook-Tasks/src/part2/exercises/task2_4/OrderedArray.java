@@ -1,10 +1,10 @@
-package Part02_Arrays.Examples;
+package part2.exercises.task2_4;
 
 /**
- * Работа с классом упорядоченного массива
+ * Метод insert(), delete(), find() должны использовать двоичный поиск
  */
 class OrderedArray {
-    private long[] a;
+    private final long[] a;
     private int nElems;
 
     public OrderedArray(int max) {
@@ -25,7 +25,7 @@ class OrderedArray {
             curIn = (lowerBound + upperBound) / 2;
             if (a[curIn] == searchKey)
                 return curIn;
-            else if (lowerBound > upperBound)
+            else if(lowerBound > upperBound)
                 return nElems;
             else {
                 if (a[curIn] < searchKey)
@@ -38,11 +38,26 @@ class OrderedArray {
 
     public void insert(long value) {
         int j;
+
+        int lowerBound = 0;
+        int upperBound = nElems - 1;
+        int insIn;
+
+        /*while(true) {
+            insIn = (lowerBound + upperBound) / 2;
+            if(a[insIn] > value) {
+                upperBound = insIn - 1;
+            }
+            else {
+                lowerBound = insIn + 1;
+            }
+        }*/
+
         for (j = 0; j < nElems; j++)
             if (a[j] > value)
                 break;
         for (int k = nElems; k > j; k--)
-            a[k] = a[k-1];
+            a[k] = a[k - 1];
         a[j] = value;
         nElems++;
     }
@@ -53,7 +68,7 @@ class OrderedArray {
             return false;
         else {
             for (int k = j; k < nElems; k++)
-                a[k] = a[k+1];
+                a[k] = a[k + 1];
             nElems--;
             return true;
         }

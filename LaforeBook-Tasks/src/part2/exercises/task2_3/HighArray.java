@@ -1,11 +1,13 @@
-package Part02_Arrays.Tasks.Task2_1;
+package part2.exercises.task2_3;
 
 /**
- * Класс массива с высокоуровневым интерфейсом.
+ * Класс массива с высокоуровневым интерфейсом
  * Добавить метод, возвращающий наибольшее значение ключа или -1, если массив пуст
+ * Элемент с наибольшим ключем должен удаляться из массива
+ * Реализовать алгоритм сортировки, который не изменяет класса HighArray (а изменяет только код main())
  */
 class HighArray {
-    private final long[] a;
+    private long[] a;
     private int nElems;
 
     public HighArray(int max) {
@@ -18,7 +20,10 @@ class HighArray {
         for (j = 0; j < nElems; j++)
             if (a[j] == searchKey)
                 break;
-        return j != nElems;
+        if (j == nElems)
+            return false;
+        else
+            return true;
     }
 
     public void insert(long value) {
@@ -28,12 +33,12 @@ class HighArray {
     public boolean delete(long value) {
         int j;
         for (j = 0; j < nElems; j++)
-            if(value == a[j])
+            if (value == a[j])
                 break;
         if (j == nElems)
             return false;
         else {
-            for (int k = j; k < nElems; k++)
+            for (int k=j; k<nElems; k++)
                 a[k] = a[k+1];
             nElems--;
             return true;
@@ -46,21 +51,24 @@ class HighArray {
         System.out.println("");
     }
 
-    public long getMax() {
+    public long removeMax() {
         long max = -1;
 
         for (int j = 0; j < nElems; j++)
             if (a[j] > max)
                 max = a[j];
+
+        delete(max);
         return max;
     }
 }
 
 class HighArrayApp {
     public static void main(String[] args) {
-        int maxSize = 100;
-        HighArray arr;
+        int maxSize = 20;
+        HighArray arr, sortedArr;
         arr = new HighArray(maxSize);
+        sortedArr = new HighArray(maxSize);
 
         arr.insert(77);
         arr.insert(99);
@@ -73,23 +81,13 @@ class HighArrayApp {
         arr.insert(66);
         arr.insert(33);
 
+        System.out.println("Print array: ");
         arr.display();
 
-        System.out.println("Max key = " + arr.getMax());
+        for(int j = 0; j < maxSize; j++)
+            sortedArr.insert(arr.removeMax());
 
-        int searchKey = 35;
-        if(arr.find(searchKey))
-            System.out.println("Found " + searchKey);
-        else
-            System.out.println("Can't find " + searchKey);
-
-        System.out.println("Deleting element with key = 0, 55, 99");
-        arr.delete(0);
-        arr.delete(55);
-        arr.delete(99);
-
-        arr.display();
-
-        System.out.println("Max key = " + arr.getMax());
+        System.out.println("Print sorted array: ");
+        sortedArr.display();
     }
 }

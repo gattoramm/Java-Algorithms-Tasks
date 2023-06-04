@@ -1,4 +1,4 @@
-package Part03_SimpleSorting.Examples;
+package part3.examples;
 
 class ArraysIns {
     private long[] a;

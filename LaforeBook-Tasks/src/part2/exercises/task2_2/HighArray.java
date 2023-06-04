@@ -1,10 +1,9 @@
-package Part02_Arrays.Tasks.Task2_3;
+package part2.exercises.task2_2;
 
 /**
  * Класс массива с высокоуровневым интерфейсом
  * Добавить метод, возвращающий наибольшее значение ключа или -1, если массив пуст
  * Элемент с наибольшим ключем должен удаляться из массива
- * Реализовать алгоритм сортировки, который не изменяет класса HighArray (а изменяет только код main())
  */
 class HighArray {
     private long[] a;
@@ -33,12 +32,12 @@ class HighArray {
     public boolean delete(long value) {
         int j;
         for (j = 0; j < nElems; j++)
-            if (value == a[j])
+            if(value == a[j])
                 break;
         if (j == nElems)
             return false;
         else {
-            for (int k=j; k<nElems; k++)
+            for (int k = j; k < nElems; k++)
                 a[k] = a[k+1];
             nElems--;
             return true;
@@ -65,10 +64,9 @@ class HighArray {
 
 class HighArrayApp {
     public static void main(String[] args) {
-        int maxSize = 20;
-        HighArray arr, sortedArr;
+        int maxSize = 100;
+        HighArray arr;
         arr = new HighArray(maxSize);
-        sortedArr = new HighArray(maxSize);
 
         arr.insert(77);
         arr.insert(99);
@@ -81,13 +79,23 @@ class HighArrayApp {
         arr.insert(66);
         arr.insert(33);
 
-        System.out.println("Print array: ");
         arr.display();
 
-        for(int j = 0; j < maxSize; j++)
-            sortedArr.insert(arr.removeMax());
+        System.out.println("Deleting max key = " + arr.removeMax());
 
-        System.out.println("Print sorted array: ");
-        sortedArr.display();
+        arr.display();
+
+        int searchKey = 35;
+        if (arr.find(searchKey))
+            System.out.println("Found " + searchKey);
+        else
+            System.out.println("Can't find " + searchKey);
+
+        System.out.println("Deleting element with key = 0, 55, 99");
+        arr.delete(0);
+        arr.delete(55);
+        arr.delete(99);
+
+        arr.display();
     }
 }
