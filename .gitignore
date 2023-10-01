@@ -3,3 +3,5 @@
 *.class
 Java-Algorithms-Tasks.iml
 *.iml
+target/
+out/
